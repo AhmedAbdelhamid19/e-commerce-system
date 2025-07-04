@@ -12,11 +12,32 @@ public class Main {
         Mobile mobile = new Mobile("Mobile", 3000, 8);
         ScratchCard scratchCard = new ScratchCard("ScratchCard", 50, 20);
 
+        // Create customer
+        Customer customer = new Customer("John Doe", 1000);
+
+        // Create cart and add products
+        Cart cart = new Cart();
+        cart.addProduct(cheese, 2);
+        cart.addProduct(biscuits, 1);
+        cart.addProduct(scratchCard, 1);
+
         System.out.println("--- Product Test ---");
         System.out.println(cheese.getName() + ": price=" + cheese.getPrice() + ", qty=" + cheese.getQuantity() + ", weight=" + cheese.getWeight() + ", expired=" + cheese.isExpired());
         System.out.println(biscuits.getName() + ": price=" + biscuits.getPrice() + ", qty=" + biscuits.getQuantity() + ", weight=" + biscuits.getWeight() + ", expired=" + biscuits.isExpired());
         System.out.println(tv.getName() + ": price=" + tv.getPrice() + ", qty=" + tv.getQuantity() + ", weight=" + tv.getWeight());
         System.out.println(mobile.getName() + ": price=" + mobile.getPrice() + ", qty=" + mobile.getQuantity());
         System.out.println(scratchCard.getName() + ": price=" + scratchCard.getPrice() + ", qty=" + scratchCard.getQuantity());
+
+        System.out.println("\n--- Customer Test ---");
+        System.out.println("Customer: " + customer.getName() + ", Balance: " + customer.getBalance());
+
+        System.out.println("\n--- Cart Test ---");
+        System.out.println("Cart items:");
+        for (var entry : cart.getItems().entrySet()) {
+            System.out.println(entry.getValue() + "x " + entry.getKey().getName());
+        }
+
+        System.out.println("\n--- Checkout Test ---");
+        CheckoutService.checkout(customer, cart);
     }
 }
