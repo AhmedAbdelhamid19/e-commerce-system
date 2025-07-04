@@ -24,4 +24,9 @@ public class Biscuits extends Product implements Expirable, Shippable {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return name + " (price=" + price + ", qty=" + quantity + ", weight=" + weight + ", expired=" + expired + ")";
+    }
 } 

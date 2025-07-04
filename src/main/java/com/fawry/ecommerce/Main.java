@@ -67,6 +67,6 @@ public class Main {
         CheckoutService.checkout(customer5, mixedCart);
         System.out.println("\n________________________________\n");
 
-        System.out.println("Test Done, I hope to join this internship");
+        System.out.println("Test Done, I Hope To Join This Internship \nAhmed Abdelhamid");
     }
 }

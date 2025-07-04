@@ -18,7 +18,15 @@ public class Customer {
     }
 
     public void deductBalance(double amount) {
-        if (amount > balance) throw new IllegalArgumentException("Insufficient balance");
+        if (amount > balance) {
+            System.out.println("Error: Insufficient balance");
+            return;
+        }
         balance -= amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer: " + name + ", Balance: " + balance;
     }
 } 

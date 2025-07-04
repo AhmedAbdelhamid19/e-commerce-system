@@ -7,10 +7,19 @@ public class Cart {
     private Map<Product, Integer> items = new LinkedHashMap<>();
 
     public void addProduct(Product product, int quantity) {
-        if (quantity <= 0) throw new IllegalArgumentException("Quantity must be positive");
-        if (quantity > product.getQuantity()) throw new IllegalArgumentException("Not enough stock for " + product.getName());
+        if (quantity <= 0) {
+            System.out.println("Error: Quantity must be positive");
+            return;
+        }
+        if (quantity > product.getQuantity()) {
+            System.out.println("Error: Not enough stock for " + product.getName());
+            return;
+        }
         int current = items.getOrDefault(product, 0);
-        if (current + quantity > product.getQuantity()) throw new IllegalArgumentException("Not enough stock for " + product.getName());
+        if (current + quantity > product.getQuantity()) {
+            System.out.println("Error: Not enough stock for " + product.getName());
+            return;
+        }
         items.put(product, current + quantity);
     }
 
@@ -20,5 +29,15 @@ public class Cart {
 
     public boolean isEmpty() {
         return items.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        if (items.isEmpty()) return "Cart is empty";
+        StringBuilder sb = new StringBuilder("Cart items:\n");
+        for (var entry : items.entrySet()) {
+            sb.append(entry.getValue()).append("x ").append(entry.getKey().getName()).append("\n");
+        }
+        return sb.toString();
     }
 } 

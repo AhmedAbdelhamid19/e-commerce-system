@@ -17,4 +17,9 @@ public class TV extends Product implements Shippable {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return name + " (price=" + price + ", qty=" + quantity + ", weight=" + weight + ")";
+    }
 } 

@@ -27,4 +27,9 @@ public abstract class Product {
         if (amount > quantity) throw new IllegalArgumentException("Not enough stock");
         quantity -= amount;
     }
+
+    @Override
+    public String toString() {
+        return name + " (price=" + price + ", qty=" + quantity + ")";
+    }
 }
