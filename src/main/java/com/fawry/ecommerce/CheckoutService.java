@@ -1,5 +1,7 @@
 package com.fawry.ecommerce;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutService {
@@ -12,6 +14,7 @@ public class CheckoutService {
         double shipping = 0;
         double totalWeight = 0;
         boolean hasError = false;
+        List<Shippable> shippableItems = new ArrayList<>();
         for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
             Product product = entry.getKey();
             int qty = entry.getValue();
@@ -33,6 +36,10 @@ public class CheckoutService {
                 double weight = ((Shippable) product).getWeight() * qty;
                 shipping += 15 * qty; // Example: 15 per shippable item
                 totalWeight += weight;
+                // Add shippable items to the list
+                for (int i = 0; i < qty; i++) {
+                    shippableItems.add((Shippable) product);
+                }
             }
         }
         if (hasError) return;
@@ -46,6 +53,8 @@ public class CheckoutService {
         for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
             entry.getKey().reduceQuantity(entry.getValue());
         }
+        // Send shippable items to shipping service
+        ShippingService.shipItems(shippableItems);
         // Print receipt
         System.out.println("** Checkout receipt **");
         for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
