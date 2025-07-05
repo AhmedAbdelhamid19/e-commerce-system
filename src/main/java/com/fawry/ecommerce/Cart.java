@@ -34,9 +34,10 @@ public class Cart {
     @Override
     public String toString() {
         if (items.isEmpty()) return "Cart is empty";
-        StringBuilder sb = new StringBuilder("Cart items:\n");
+        StringBuilder sb = new StringBuilder();
         for (var entry : items.entrySet()) {
-            sb.append(entry.getValue()).append("x ").append(entry.getKey().getName()).append("\n");
+            sb.append(entry.getValue()).append("x ").append(entry.getKey().getName()).append("\t");
+            sb.append(entry.getKey().getPrice() * entry.getValue()).append("\n");
         }
         return sb.toString();
     }

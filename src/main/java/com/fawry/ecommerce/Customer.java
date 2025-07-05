@@ -17,7 +17,7 @@ public class Customer {
         return balance;
     }
 
-    public void deductBalance(double amount) {
+    public void reduceBalance(double amount) {
         if (amount > balance) {
             System.out.println("Error: Insufficient balance");
             return;

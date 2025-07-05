@@ -9,22 +9,18 @@ public class Biscuits extends Product implements Expirable, Shippable {
         this.weight = weight;
         this.expired = expired;
     }
-
     @Override
     public boolean isExpired() {
         return expired;
     }
-
     @Override
     public double getWeight() {
         return weight;
     }
-
     @Override
     public String getName() {
         return name;
     }
-
     @Override
     public String toString() {
         return name + " (price=" + price + ", qty=" + quantity + ", weight=" + weight + ", expired=" + expired + ")";
